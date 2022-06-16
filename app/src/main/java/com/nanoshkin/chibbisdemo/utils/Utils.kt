@@ -6,6 +6,8 @@ import android.view.inputmethod.InputMethodManager
 import kotlin.math.abs
 
 object Utils {
+    fun formattingPositiveReviews(reviews: Int): String = "${reviews}%"
+
     fun formattingMinCost(minCost: Int): String = "от ${minCost}Р"
 
     fun formattingDeliveryCost(costDelivery: Int): String =

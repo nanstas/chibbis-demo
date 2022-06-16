@@ -20,7 +20,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_margin="16dp"
-            android:contentDescription="TODO"
+            android:contentDescription="@string/restaurant_logo"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toTopOf="@id/divider"
             app:layout_constraintStart_toStartOf="parent"
@@ -59,11 +59,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
-            android:contentDescription="TODO"
             android:src="@drawable/ic_thumb_up_24"
             app:layout_constraintBottom_toBottomOf="@id/restaurant_logo_image_view"
             app:layout_constraintStart_toEndOf="@id/restaurant_logo_image_view"
-            app:tint="@color/green" />
+            app:tint="@color/green"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/restaurant_positive_reviews_text_view"
@@ -75,18 +75,7 @@
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@id/restaurant_positive_reviews_image_view"
             app:layout_constraintTop_toTopOf="@id/restaurant_positive_reviews_image_view"
-            tools:text="92" />
-
-        <TextView
-            android:id="@+id/percent_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:text="%"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/restaurant_positive_reviews_text_view"
-            app:layout_constraintTop_toTopOf="@id/restaurant_positive_reviews_text_view" />
+            tools:text="92%" />
 
         <TextView
             android:id="@+id/restaurant_reviews_count_text_view"
@@ -95,7 +84,7 @@
             android:layout_marginStart="20dp"
             android:textColor="@color/grey_light"
             app:layout_constraintBottom_toBottomOf="@id/restaurant_positive_reviews_image_view"
-            app:layout_constraintStart_toEndOf="@id/percent_text_view"
+            app:layout_constraintStart_toEndOf="@id/restaurant_positive_reviews_text_view"
             app:layout_constraintTop_toTopOf="@id/restaurant_positive_reviews_image_view"
             tools:text="106 отзывов" />
 
@@ -115,12 +104,12 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="TODO"
             android:src="@drawable/ic_hopping_basket_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            app:tint="@color/grey_light" />
+            app:tint="@color/grey_light"
+            tools:ignore="ContentDescription,HardcodedText" />
 
         <TextView
             android:id="@+id/restaurant_min_cost_text_view"
@@ -138,14 +127,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="TODO"
             android:src="@drawable/ic_directions_car_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/restaurant_delivery_cost_text_view"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            app:tint="@color/grey_light" />
+            app:tint="@color/grey_light"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/restaurant_delivery_cost_text_view"
@@ -165,12 +154,12 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="TODO"
             android:src="@drawable/ic_access_time_filled_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/restaurant_delivery_time_text_view"
             app:layout_constraintTop_toBottomOf="@id/divider"
-            app:tint="@color/grey_light" />
+            app:tint="@color/grey_light"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/restaurant_delivery_time_text_view"

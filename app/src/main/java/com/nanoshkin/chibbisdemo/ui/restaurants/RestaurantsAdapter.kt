@@ -31,7 +31,7 @@ class RestaurantsAdapter :
             with(binding) {
                 restaurantNameTextView.text = restaurant.name
                 restaurantSpecializationsTextView.text = Utils.formattingRestaurantSpecializations(restaurant.specializations)
-                restaurantPositiveReviewsTextView.text = restaurant.positiveReviews.toString()
+                restaurantPositiveReviewsTextView.text = Utils.formattingPositiveReviews(restaurant.positiveReviews)
                 restaurantReviewsCountTextView.text = Utils.formattingReviewsCount(restaurant.reviewsCount)
                 restaurantMinCostTextView.text = Utils.formattingMinCost(restaurant.minCost)
                 restaurantDeliveryCostTextView.text =

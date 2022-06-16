@@ -19,13 +19,13 @@
             android:id="@+id/review_user_name_text_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/review_date_text_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/review_date_text_view"
             tools:text="Сергей Фёдоров" />
 
         <TextView
@@ -34,23 +34,23 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/review_user_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/review_user_name_text_view"
             app:layout_constraintTop_toTopOf="@id/review_user_name_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/review_user_name_text_view"
             tools:text="14.06.2022 10:59" />
 
         <ImageView
             android:id="@+id/review_positive_image_view"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            app:layout_constraintTop_toTopOf="@id/review_restaurant_name_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/review_restaurant_name_text_view"
             android:layout_marginEnd="16dp"
-            android:contentDescription="TODO"
-            tools:src="@drawable/ic_thumb_up_24"
-            app:tint="@color/green" />
+            app:layout_constraintBottom_toBottomOf="@id/review_restaurant_name_text_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/review_restaurant_name_text_view"
+            app:tint="@color/green"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/ic_thumb_up_24" />
 
         <TextView
             android:id="@+id/review_message_text_view"
@@ -59,9 +59,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/review_user_name_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Все отлично, доставка быстрая! Все как всегда вкусно! Но пиццу подсолить надо)" />
 
         <TextView
@@ -74,12 +74,11 @@
             android:layout_marginBottom="16dp"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/review_positive_image_view"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/review_message_text_view"
-            app:layout_constraintEnd_toStartOf="@id/review_positive_image_view"
-            app:layout_constraintBottom_toBottomOf="parent"
             tools:text="Кафе-пиццерия «Ницца-пицца»" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
