@@ -1,44 +1,36 @@
 package com.nanoshkin.chibbisdemo.ui.hits
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.nanoshkin.chibbisdemo.R
 import com.nanoshkin.chibbisdemo.databinding.FragmentHitsBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class HitsFragment : Fragment() {
+class HitsFragment : Fragment(R.layout.fragment_hits) {
 
-    private var _binding: FragmentHitsBinding? = null
+    private val viewModel: HitsViewModel by viewModels()
+    private val binding by viewBinding(FragmentHitsBinding::bind)
+    private val adapter = HitAdapter()
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val hitsViewModel =
-            ViewModelProvider(this).get(HitsViewModel::class.java)
-
-        _binding = FragmentHitsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textDashboard
-        hitsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        lifecycleScope.launchWhenStarted {
+            viewModel.dataHits.collectLatest {
+                adapter.submitList(it)
+            }
         }
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.hitsRecyclerView.adapter = adapter
     }
 }

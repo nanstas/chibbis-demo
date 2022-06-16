@@ -1,7 +1,10 @@
 package com.nanoshkin.chibbisdemo.di
 
 import com.nanoshkin.chibbisdemo.BuildConfig
+import com.nanoshkin.chibbisdemo.data.network.api.HitsApi
 import com.nanoshkin.chibbisdemo.data.network.api.RestaurantsApi
+import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepository
+import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepositoryImpl
 import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepository
 import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepositoryImpl
 import dagger.Module
@@ -34,6 +37,13 @@ object Module {
 
     @Provides
     @Singleton
+    fun provideHitsApi(retrofit: Retrofit): HitsApi {
+        return retrofit
+            .create(HitsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -54,5 +64,11 @@ object Module {
     @Singleton
     fun provideRestaurantRepository(restaurantsApi: RestaurantsApi): RestaurantRepository {
         return RestaurantRepositoryImpl(restaurantsApi = restaurantsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideHitsRepository(hitsApi: HitsApi): HitsRepository {
+        return HitsRepositoryImpl(hitsApi = hitsApi)
     }
 }
