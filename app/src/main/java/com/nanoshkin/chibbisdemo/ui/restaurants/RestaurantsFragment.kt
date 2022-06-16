@@ -43,7 +43,6 @@ class RestaurantsFragment : Fragment(R.layout.fragment_restaurants) {
                         binding.restaurantsRecyclerView.scrollToPosition(0)
                         viewModel.search(query)
                         binding.searchView.clearFocus()
-
                     }
                 }
                 return true

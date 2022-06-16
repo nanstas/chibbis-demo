@@ -2,8 +2,10 @@ package com.nanoshkin.chibbisdemo.data.network.mapers
 
 import com.nanoshkin.chibbisdemo.data.model.Hit
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
+import com.nanoshkin.chibbisdemo.data.model.Review
 import com.nanoshkin.chibbisdemo.data.network.dto.hits.HitsResponseItem
 import com.nanoshkin.chibbisdemo.data.network.dto.restaurants.RestaurantsResponseItem
+import com.nanoshkin.chibbisdemo.data.network.dto.reviews.ReviewsResponseItem
 
 fun RestaurantsResponseItem.toRestaurant(): Restaurant {
     return Restaurant(
@@ -26,5 +28,16 @@ fun HitsResponseItem.toHit(): Hit {
         description = ProductDescription,
         restaurantName = RestaurantName,
         restaurantLogo = RestaurantLogo
+    )
+
+}
+
+fun ReviewsResponseItem.toReview(): Review {
+    return Review(
+        user = UserFIO,
+        date = DateAdded,
+        restaurantName = RestaurantName,
+        message = Message,
+        isPositive = IsPositive
     )
 }

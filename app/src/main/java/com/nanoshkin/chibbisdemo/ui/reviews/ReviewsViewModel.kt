@@ -1,16 +1,37 @@
 package com.nanoshkin.chibbisdemo.ui.reviews
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.nanoshkin.chibbisdemo.data.model.Hit
+import com.nanoshkin.chibbisdemo.data.model.Review
+import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ReviewsViewModel @Inject constructor() : ViewModel() {
+class ReviewsViewModel @Inject constructor(
+    private val reviewsRepository: ReviewsRepository
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is reviews Fragment"
+    private val cash = mutableListOf<Review>()
+
+    private val _dataReviews = MutableSharedFlow<List<Review>>()
+    val dataReviews: SharedFlow<List<Review>> = _dataReviews.asSharedFlow()
+
+    init {
+        viewModelScope.launch {
+            updateData()
+        }
     }
-    val text: LiveData<String> = _text
+
+    private suspend fun updateData() {
+        val data = reviewsRepository.getReviews()
+        cash.clear()
+        cash.addAll(data)
+        _dataReviews.emit(cash)
+    }
 }

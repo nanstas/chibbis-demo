@@ -3,10 +3,13 @@ package com.nanoshkin.chibbisdemo.di
 import com.nanoshkin.chibbisdemo.BuildConfig
 import com.nanoshkin.chibbisdemo.data.network.api.HitsApi
 import com.nanoshkin.chibbisdemo.data.network.api.RestaurantsApi
+import com.nanoshkin.chibbisdemo.data.network.api.ReviewsApi
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepository
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepositoryImpl
 import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepository
 import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepositoryImpl
+import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepository
+import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,6 +47,13 @@ object Module {
 
     @Provides
     @Singleton
+    fun provideReviewsApi(retrofit: Retrofit): ReviewsApi {
+        return retrofit
+            .create(ReviewsApi::class.java)
+    }
+
+    @Provides
+    @Singleton
     fun provideRetrofit(client: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -70,5 +80,11 @@ object Module {
     @Singleton
     fun provideHitsRepository(hitsApi: HitsApi): HitsRepository {
         return HitsRepositoryImpl(hitsApi = hitsApi)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReviewsRepository(reviewsApi: ReviewsApi): ReviewsRepository {
+        return ReviewsRepositoryImpl(reviewsApi = reviewsApi)
     }
 }
