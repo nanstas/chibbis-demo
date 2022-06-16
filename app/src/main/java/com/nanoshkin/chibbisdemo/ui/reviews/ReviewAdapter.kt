@@ -31,7 +31,7 @@ class ReviewAdapter :
         fun bind(review: Review) {
             with(binding) {
                 reviewUserNameTextView.text = review.user
-                reviewDateTextView.text = review.date
+                reviewDateTextView.text = Utils.formattingReviewDate(review.date)
                 reviewMessageTextView.text = review.message
                 reviewRestaurantNameTextView.text = review.restaurantName
                 reviewPositiveImageView.load(

@@ -3,7 +3,7 @@ package com.nanoshkin.chibbisdemo.ui.restaurants
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
-import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepository
+import com.nanoshkin.chibbisdemo.data.repository.restaurants.RestaurantsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RestaurantsViewModel @Inject constructor(
-    private val restaurantRepository: RestaurantRepository
+    private val restaurantsRepository: RestaurantsRepository
 ) : ViewModel() {
 
     private val cash = mutableListOf<Restaurant>()
@@ -34,7 +34,7 @@ class RestaurantsViewModel @Inject constructor(
     }
 
     suspend fun updateData() {
-        val data = restaurantRepository.getRestaurants()
+        val data = restaurantsRepository.getRestaurants()
         cash.clear()
         cash.addAll(data)
         _dataRestaurants.emit(cash)

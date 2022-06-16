@@ -30,8 +30,7 @@ class RestaurantsAdapter :
         fun bind(restaurant: Restaurant) {
             with(binding) {
                 restaurantNameTextView.text = restaurant.name
-                restaurantSpecializationsTextView.text =
-                    restaurant.specializations.reduce { acc, s -> "$acc/ $s" }
+                restaurantSpecializationsTextView.text = Utils.formattingRestaurantSpecializations(restaurant.specializations)
                 restaurantPositiveReviewsTextView.text = restaurant.positiveReviews.toString()
                 restaurantReviewsCountTextView.text = Utils.formattingReviewsCount(restaurant.reviewsCount)
                 restaurantMinCostTextView.text = Utils.formattingMinCost(restaurant.minCost)

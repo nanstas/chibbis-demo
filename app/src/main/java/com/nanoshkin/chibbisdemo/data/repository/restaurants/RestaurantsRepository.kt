@@ -1,7 +1,7 @@
-package com.nanoshkin.chibbisdemo.data.repository.restaurant
+package com.nanoshkin.chibbisdemo.data.repository.restaurants
 
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
 
-interface RestaurantRepository {
+interface RestaurantsRepository {
     suspend fun getRestaurants(): List<Restaurant>
 }

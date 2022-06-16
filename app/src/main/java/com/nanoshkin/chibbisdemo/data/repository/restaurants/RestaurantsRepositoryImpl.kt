@@ -1,4 +1,4 @@
-package com.nanoshkin.chibbisdemo.data.repository.restaurant
+package com.nanoshkin.chibbisdemo.data.repository.restaurants
 
 import com.nanoshkin.chibbisdemo.data.exeptions.ApiException
 import com.nanoshkin.chibbisdemo.data.exeptions.ServerException
@@ -9,9 +9,9 @@ import com.nanoshkin.chibbisdemo.data.network.mapers.toRestaurant
 import java.io.IOException
 import javax.inject.Inject
 
-class RestaurantRepositoryImpl @Inject constructor(
+class RestaurantsRepositoryImpl @Inject constructor(
     private val restaurantsApi: RestaurantsApi
-) : RestaurantRepository {
+) : RestaurantsRepository {
     override suspend fun getRestaurants(): List<Restaurant> {
         try {
             val response = restaurantsApi.getRestaurants()

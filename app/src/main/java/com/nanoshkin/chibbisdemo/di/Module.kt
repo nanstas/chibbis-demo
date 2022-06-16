@@ -6,8 +6,8 @@ import com.nanoshkin.chibbisdemo.data.network.api.RestaurantsApi
 import com.nanoshkin.chibbisdemo.data.network.api.ReviewsApi
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepository
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepositoryImpl
-import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepository
-import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepositoryImpl
+import com.nanoshkin.chibbisdemo.data.repository.restaurants.RestaurantsRepository
+import com.nanoshkin.chibbisdemo.data.repository.restaurants.RestaurantsRepositoryImpl
 import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepository
 import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepositoryImpl
 import dagger.Module
@@ -72,8 +72,8 @@ object Module {
 
     @Provides
     @Singleton
-    fun provideRestaurantRepository(restaurantsApi: RestaurantsApi): RestaurantRepository {
-        return RestaurantRepositoryImpl(restaurantsApi = restaurantsApi)
+    fun provideRestaurantRepository(restaurantsApi: RestaurantsApi): RestaurantsRepository {
+        return RestaurantsRepositoryImpl(restaurantsApi = restaurantsApi)
     }
 
     @Provides
