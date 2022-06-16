@@ -3,7 +3,7 @@ package com.nanoshkin.chibbisdemo.data.model
 data class Restaurant(
     val name: String,
     val logo: String,
-    val minCost: String,
+    val minCost: Int,
     val deliveryCost: Int,
     val deliveryTime: Int,
     val positiveReviews: Int,

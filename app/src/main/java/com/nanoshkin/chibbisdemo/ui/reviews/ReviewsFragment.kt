@@ -8,7 +8,9 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.nanoshkin.chibbisdemo.databinding.FragmentReviewsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReviewsFragment : Fragment() {
 
     private var _binding: FragmentReviewsBinding? = null

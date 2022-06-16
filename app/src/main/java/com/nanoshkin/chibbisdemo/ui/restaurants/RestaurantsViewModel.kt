@@ -1,13 +1,41 @@
 package com.nanoshkin.chibbisdemo.ui.restaurants
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.nanoshkin.chibbisdemo.data.model.Restaurant
+import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RestaurantsViewModel : ViewModel() {
+@HiltViewModel
+class RestaurantsViewModel @Inject constructor(
+    private val restaurantRepositoryImpl: RestaurantRepositoryImpl
+) : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is restaurants Fragment"
+    private val cash = mutableListOf<Restaurant>()
+
+    private val _dataRestaurants = MutableSharedFlow<List<Restaurant>>()
+    val dataRestaurants: SharedFlow<List<Restaurant>> = _dataRestaurants.asSharedFlow()
+
+    init {
+        viewModelScope.launch {
+            updateData()
+        }
     }
-    val text: LiveData<String> = _text
+
+    suspend fun search(text: String) {
+        val list = cash.filter { it.name.lowercase().contains(text) }
+        _dataRestaurants.emit(list)
+    }
+
+    suspend fun updateData() {
+        val data = restaurantRepositoryImpl.getRestaurants()
+        cash.clear()
+        cash.addAll(data)
+        _dataRestaurants.emit(cash)
+    }
 }
