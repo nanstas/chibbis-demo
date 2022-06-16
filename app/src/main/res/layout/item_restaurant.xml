@@ -55,8 +55,8 @@
 
         <ImageView
             android:id="@+id/restaurant_positive_reviews_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginBottom="8dp"
             android:src="@drawable/ic_thumb_up_24"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/restaurant_positive_reviews_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:textColor="@color/green"
@@ -79,11 +79,12 @@
 
         <TextView
             android:id="@+id/restaurant_reviews_count_text_view"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:textColor="@color/grey_light"
             app:layout_constraintBottom_toBottomOf="@id/restaurant_positive_reviews_image_view"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/restaurant_positive_reviews_text_view"
             app:layout_constraintTop_toTopOf="@id/restaurant_positive_reviews_image_view"
             tools:text="106 отзывов" />
@@ -99,8 +100,8 @@
 
         <ImageView
             android:id="@+id/restaurant_min_cost_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
@@ -123,8 +124,8 @@
 
         <ImageView
             android:id="@+id/restaurant_delivery_cost_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/ic_directions_car_24"
@@ -149,8 +150,8 @@
 
         <ImageView
             android:id="@+id/restaurant_delivery_time_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="6dp"
             android:layout_marginBottom="16dp"
