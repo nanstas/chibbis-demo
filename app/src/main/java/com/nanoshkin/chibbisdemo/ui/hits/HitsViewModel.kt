@@ -6,6 +6,7 @@ import com.nanoshkin.chibbisdemo.data.model.Hit
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,7 +20,7 @@ class HitsViewModel @Inject constructor(
 
     private val cash = mutableListOf<Hit>()
 
-    private val _dataHits = MutableSharedFlow<List<Hit>>()
+    private val _dataHits = MutableSharedFlow<List<Hit>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataHits: SharedFlow<List<Hit>> = _dataHits.asSharedFlow()
 
     init {

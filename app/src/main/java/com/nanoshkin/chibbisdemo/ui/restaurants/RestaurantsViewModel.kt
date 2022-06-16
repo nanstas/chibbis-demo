@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
 import com.nanoshkin.chibbisdemo.data.repository.restaurant.RestaurantRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -18,7 +19,7 @@ class RestaurantsViewModel @Inject constructor(
 
     private val cash = mutableListOf<Restaurant>()
 
-    private val _dataRestaurants = MutableSharedFlow<List<Restaurant>>()
+    private val _dataRestaurants = MutableSharedFlow<List<Restaurant>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataRestaurants: SharedFlow<List<Restaurant>> = _dataRestaurants.asSharedFlow()
 
     init {

@@ -6,6 +6,7 @@ import com.nanoshkin.chibbisdemo.data.model.Hit
 import com.nanoshkin.chibbisdemo.data.model.Review
 import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -19,7 +20,7 @@ class ReviewsViewModel @Inject constructor(
 
     private val cash = mutableListOf<Review>()
 
-    private val _dataReviews = MutableSharedFlow<List<Review>>()
+    private val _dataReviews = MutableSharedFlow<List<Review>>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
     val dataReviews: SharedFlow<List<Review>> = _dataReviews.asSharedFlow()
 
     init {
