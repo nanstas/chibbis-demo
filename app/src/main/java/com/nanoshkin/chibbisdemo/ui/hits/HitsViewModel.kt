@@ -6,6 +6,7 @@ import com.nanoshkin.chibbisdemo.data.model.Hit
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
 import com.nanoshkin.chibbisdemo.data.repository.hits.HitsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -24,7 +25,7 @@ class HitsViewModel @Inject constructor(
     val dataHits: SharedFlow<List<Hit>> = _dataHits.asSharedFlow()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             updateData()
         }
     }

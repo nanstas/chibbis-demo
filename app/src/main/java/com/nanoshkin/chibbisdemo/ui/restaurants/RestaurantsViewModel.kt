@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nanoshkin.chibbisdemo.data.model.Restaurant
 import com.nanoshkin.chibbisdemo.data.repository.restaurants.RestaurantsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -23,7 +24,7 @@ class RestaurantsViewModel @Inject constructor(
     val dataRestaurants: SharedFlow<List<Restaurant>> = _dataRestaurants.asSharedFlow()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             updateData()
         }
     }

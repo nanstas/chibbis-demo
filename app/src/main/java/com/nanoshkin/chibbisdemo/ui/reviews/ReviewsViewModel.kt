@@ -6,6 +6,7 @@ import com.nanoshkin.chibbisdemo.data.model.Hit
 import com.nanoshkin.chibbisdemo.data.model.Review
 import com.nanoshkin.chibbisdemo.data.repository.reviews.ReviewsRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -24,7 +25,7 @@ class ReviewsViewModel @Inject constructor(
     val dataReviews: SharedFlow<List<Review>> = _dataReviews.asSharedFlow()
 
     init {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             updateData()
         }
     }
